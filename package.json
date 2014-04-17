@@ -34,7 +34,7 @@
   "main": "./lib/mySite/index.coffee",
   "preferGlobal": "true",
   "bin": {
-    "mysite": "./bin/mySite"
+    "mysite": "./bin/mysite"
   },
   "dependencies": {
     "async": "latest",

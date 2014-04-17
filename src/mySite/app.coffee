@@ -51,6 +51,13 @@ module.exports.App = class App
     # @app.use '_update', (res, req,next) ->
     @app.use require('express-uncapitalize')() if @config.uncapitalize
 
+    # @app.get /.*\/[^\.\/]*$/, (req, res, next) ->
+    #   #res.redirect 303, path.join req.url, @config.index
+    #   req.url = path.join req.url, @config.index
+    #   next()
+
+    # @app.get /\.(html|htm|xml|xhtml|xht)$/, @pageHandler
+
     ## static content handler
     @app.use (req, res, next) =>
       @debug "Checking static cache for #{req.url}"
@@ -60,13 +67,6 @@ module.exports.App = class App
       return @staticCache.apply @, arguments
       # catch e
       #   console.error e
-
-    # @app.get /.*\/[^\.\/]*$/, (req, res, next) ->
-    #   #res.redirect 303, path.join req.url, @config.index
-    #   req.url = path.join req.url, @config.index
-    #   next()
-
-    # @app.get /\.(html|htm|xml|xhtml|xht)$/, @pageHandler
 
     ## catch 404 and forwarding to error handler
     @app.use (req, res, next) ->

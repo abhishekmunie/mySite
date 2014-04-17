@@ -29,8 +29,6 @@
     "lib": "./lib/mySite/mySite"
   },
   "scripts": {
-    "start": "grunt server",
-    "build": "grunt build:debug",
     "test": "grunt test:ci"
   },
   "main": "./lib/mySite/index.coffee",

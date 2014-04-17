@@ -48,11 +48,11 @@ commander.command('serve').description('Serve your site with continous in-memory
   console.log('    $ mySite serve --watch --port $PORT');
   return console.log('');
 }).action(function(options) {
-  var config, mySite;
-  console.log("Building " + config.source + "...");
+  var mySite;
+  console.log("Building " + commander.source + "...");
   return mySite = new Site({source: commander.source}, function() {
     mySite.serve();
-    console.log("Serving at " + config.port + "...");
+    console.log("Serving at " + commander.port + "...");
     return console.log("Watching for changes...");
   });
 });

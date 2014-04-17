@@ -49,7 +49,7 @@ commander.command('serve').description('Serve your site with continous in-memory
   return console.log('');
 }).action(function(options) {
   var config, mySite;
-  config = deep_merge_ex_({}, commander, options);
+  config = deep_merge_ex_({}, commander, {source: options.source});
   console.log("Building " + config.source + "...");
   return mySite = new Site(config, function() {
     mySite.serve();

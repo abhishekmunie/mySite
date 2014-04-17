@@ -19,8 +19,9 @@ module.exports.App = class App
     console.log @config.static_file.source
     @app = express()
     @app.set 'env', @config.env
-    if @app.get('env') is 'development'
-      @debug = require('debug') 'mySite-server'
+    # @debug = if @app.get('env') is 'development' then require('debug') 'mySite-server' else ->
+    @debug = require('debug') 'mySite-server'
+
     @staticCache  = cacheliciousConnect @config.static_file.source, maxCacheSize: @config.static_file.cache_size
 
   setPageHandler: (@pageHandler) ->

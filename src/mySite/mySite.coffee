@@ -53,9 +53,9 @@ module.exports.Site = class Site
 
     @config = configConvict.get()
 
-    if @config.env is 'development'
-      debug = require('debug') 'mySite'
-      debug "Using Config:\n #{util.inspect @config}"
+    # if @config.env is 'development'
+    debug = require('debug') 'mySite'
+    debug "Using Config:\n #{util.inspect @config}"
 
     @source  = @config.source      = path.resolve @config.source
     @destination = @config.destination = path.resolve @config.destination if @config.destination?

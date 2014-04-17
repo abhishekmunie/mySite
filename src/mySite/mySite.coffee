@@ -42,11 +42,9 @@ module.exports.Site = class Site
     @config = {}
     # Merge mySite::configConvict < _config.yml < _config.json < override
     config_yml = {}
-    config_json = {}
     try config_yml = grunt.file.readYAML path.resolve options.source, '_config.yml' catch e
-    try config_json = grunt.file.readJSON path.resolve options.source, '_config.json' catch e
     configConvict.load config_yml
-    configConvict.load config_json
+    configConvict.loadFile json_config_path if fs.existsSync json_config_path = path.resolve options.source, '_config.json'
     configConvict.load options
     unprocessed_options = configConvict.get()
     configConvict.load JSON.parse grunt.template.process JSON.stringify(unprocessed_options), data: unprocessed_options

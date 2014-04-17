@@ -77,7 +77,8 @@ module.exports.App = class App
 
     ## error handlers
     @app.use (err, req, res, next) ->
-      console.error err
+      console.error err.stack
+      next err
     if @app.get('env') is 'production'
       # production error handler
       # no stacktraces leaked to user

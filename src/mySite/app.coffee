@@ -61,8 +61,9 @@ module.exports.App = class App
     ## static content handler
     @app.use (req, res, next) =>
       @debug "Checking static cache for #{req.url}"
-      return next() if req.url[0] is '_' or req.url.indexOf('/_') >= 0
+      return next() if req.url[1] is '_' or /^\/(.*\/_.*|node_modules\/.*|package.json|Procfile|vendor\/.*)$/.test req.url
       # req.url = req.url.replace /^(.+)\.(\d+)\.(js|css|png|jpg|gif)$/, '$1.$3' if @config.cache_busting
+
       # try
       return @staticCache.apply @, arguments
       # catch e

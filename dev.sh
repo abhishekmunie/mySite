@@ -110,10 +110,10 @@ newtab -G coffee -cbwm --output lib/mySite src/mySite
 
 newtab -G coffee -cbw --no-header --output bin src/bin/cli.coffee
 
-newtab -G nodemon --watch bin/cli.js --exec "mv bin/cli.js bin/mySite"
+newtab -G nodemon --watch bin/cli.js --exec "mv bin/cli.js bin/mysite"
 
-newtab -G nodemon --watch bin/mySite --exec "chmod 775 bin/mySite"
+newtab -G nodemon --watch bin/mySite --exec "chmod 775 bin/mysite"
 
-newtab -G PATH=bin:$PATH NODE_ENV='development' DEBUG='*' nodemon --watch bin/mySite --watch lib --exec "mySite --source test/site serve --livereload"
+newtab -G PATH=bin:$PATH NODE_ENV='development' DEBUG='*' nodemon --watch bin/mysite --watch lib --exec "mysite --source test/site serve --livereload"
 
 # newtab -G jekyll build --config _config.dev.yml --watch

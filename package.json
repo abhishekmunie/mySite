@@ -25,16 +25,16 @@
     "npm": ">=1.1.39"
   },
   "directories": {
-    "bin": "./bin",
-    "lib": "./lib/mySite/mySite"
+    "bin": "bin",
+    "lib": "lib/mySite/mySite"
   },
   "scripts": {
     "test": "grunt test:ci"
   },
-  "main": "./lib/mySite/index.coffee",
+  "main": "lib/mySite/index.coffee",
   "preferGlobal": "true",
   "bin": {
-    "mysite": "./bin/mysite"
+    "mysite": "bin/mysite"
   },
   "dependencies": {
     "async": "latest",

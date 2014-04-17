@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "data-model.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "src/mySite/data-model.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAuIsC"
+}

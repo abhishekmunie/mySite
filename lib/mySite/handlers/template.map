@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "template.js",
+  "sourceRoot": "../../..",
+  "sources": [
+    "src/mySite/handlers/template.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAUgC"
+}

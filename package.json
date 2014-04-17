@@ -1,0 +1,84 @@
+{
+  "name": "mySite",
+  "namespace": "mySite",
+  "description": "A nodejs mySite server.",
+  "keywords": [
+    "personal site",
+    "mySite",
+    "server"
+  ],
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Abhishek Munie",
+      "email": "projects@abhishekmunie.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/ASE-Inc/mySite/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.15",
+    "npm": ">=1.1.39"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib/mySite/mySite"
+  },
+  "scripts": {
+    "start": "grunt server",
+    "build": "grunt build:debug",
+    "test": "grunt test:ci"
+  },
+  "main": "./lib/mySite/index.coffee",
+  "preferGlobal": "true",
+  "bin": {
+    "mysite": "./bin/mySite"
+  },
+  "dependencies": {
+    "async": "latest",
+    "body-parser": "latest",
+    "cache-stream": "latest",
+    "cachelicious": "cblage/node-cachelicious",
+    "coffee-script": "latest",
+    "commander": "latest",
+    "connect": "^2.14.4",
+    "convict": "latest",
+    "cookie-parser": "latest",
+    "debug": "latest",
+    "express": "latest",
+    "express-session": "^1.0.2",
+    "express-uncapitalize": "latest",
+    "grunt": "latest",
+    "h5bp": "latest",
+    "hamljs": "latest",
+    "helmet": "latest",
+    "hogan.js": "latest",
+    "http-proxy": "latest",
+    "jade": "latest",
+    "js-yaml": "latest",
+    "lodash": "latest",
+    "morgan": "latest",
+    "static-favicon": "latest",
+    "validator": "^3.9.0"
+  },
+  "homepage": "http://ASE-Inc.github.com/mysite",
+  "bugs": "https://github.com/ASE-Inc/mySite/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ASE-Inc/mySite.git"
+  },
+  "devDependencies": {
+    "cucumber": "latest",
+    "connect-livereload": "latest",
+    "nock": "latest",
+    "replay": "latest",
+    "nock-vcr": "latest",
+    "node-inspector": "latest"
+  },
+  "readmeFilename": "README.md",
+  "readme": "## mySite\n\n\n# Configuration"
+}

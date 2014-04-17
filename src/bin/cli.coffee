@@ -52,9 +52,9 @@ commander
     console.log ''
 
   .action (options) ->
-    config = deep_merge_ex_ {}, commander, options
+    # config = deep_merge_ex_ {}, commander, options
     console.log "Building #{config.source}..."
-    mySite = new Site config, ->
+    mySite = new Site {source: commander.source} , ->
       mySite.serve()
       console.log "Serving at #{config.port}..."
       console.log "Watching for changes..."

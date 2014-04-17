@@ -3,7 +3,6 @@ url          = require 'url'
 path         = require 'path'
 http         = require 'http'
 zlib         = require 'zlib'
-h5bp         = require 'h5bp'
 
 express      = require 'express'
 favicon      = require 'static-favicon'
@@ -50,8 +49,6 @@ module.exports.App = class App
         next()
 
     # @app.use '_update', (res, req,next) ->
-    # @app.use h5bp
-    #   www: @config.redirect_www
     @app.use require('express-uncapitalize')() if @config.uncapitalize
 
     ## static content handler

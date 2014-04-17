@@ -51,7 +51,6 @@
     "express-session": "^1.0.2",
     "express-uncapitalize": "latest",
     "grunt": "latest",
-    "h5bp": "latest",
     "hamljs": "latest",
     "helmet": "latest",
     "hogan.js": "latest",

@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+;
+var Site, commander, deep_merge_ex_, fs, lib, path,
+  __slice = [].slice;
+
+fs = require('fs');
+
+path = require('path');
+
+commander = require('commander');
+
+lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+
+Site = require(lib + '/mySite').Site;
+
+deep_merge_ex_ = function() {
+  var key, obj, objects, target, val, _i, _len;
+  target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+  for (_i = 0, _len = objects.length; _i < _len; _i++) {
+    obj = objects[_i];
+    for (key in obj) {
+      val = obj[key];
+      if (key[0] !== '_') {
+        if (target[key] && typeof val === "object" && typeof target[key] === "object") {
+          deep_merge_ex_(target[key], obj[key]);
+        } else {
+          target[key] = obj[key];
+        }
+      }
+    }
+  }
+  return target;
+};
+
+commander.version('0.0.1').description('static site generator').option('-s, --source [DIR]', 'Source directory (defaults to ./)', './').option('--safe', 'Safe mode (defaults to false)').option('--plugins [DIR]', 'Plugins directory (defaults to ./_plugins)', './_plugins').option('--layouts [DIR]', 'Layouts directory (defaults to ./_layouts)', './_layouts').on('--help', function() {
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ mySite --help');
+  console.log('    $ mySite build');
+  console.log('    $ mySite serve --port $PORT');
+  return console.log('');
+});
+
+commander.command('serve').description('Serve your site with continous in-memory build').option('-w, --watch', 'Watch for changes and rebuild').option('-p, --port [PORT]', 'Port to listen on', parseInt, 4000).option('-h, --host [HOST]', 'Host to bind to', '0.0.0.0').option('-b, --baseurl [URL]', 'Base URL', '/').option('-l, --livereload [PORT]', 'Livereload on changes', parseInt, 35729).on('--help', function() {
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ mySite serve --port $PORT');
+  console.log('    $ mySite serve --watch --port $PORT');
+  return console.log('');
+}).action(function(options) {
+  var config, mySite;
+  config = deep_merge_ex_({}, commander, options);
+  console.log("Building " + config.source + "...");
+  return mySite = new Site(config, function() {
+    mySite.serve();
+    console.log("Serving at " + config.port + "...");
+    return console.log("Watching for changes...");
+  });
+});
+
+commander.parse(process.argv);

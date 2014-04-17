@@ -46,8 +46,8 @@ module.exports.Site = class Site
     configConvict.load config_yml
     configConvict.loadFile json_config_path if fs.existsSync json_config_path = path.resolve options.source, '_config.json'
     configConvict.load options
-    unprocessed_options = configConvict.get()
-    configConvict.load JSON.parse grunt.template.process JSON.stringify(unprocessed_options), data: unprocessed_options
+    grunt.initConfig configConvict.get()
+    configConvict.load grunt.config.get()
     # perform validation
     configConvict.validate()
 

@@ -62,11 +62,11 @@
     "static-favicon": "latest",
     "validator": "^3.9.0"
   },
-  "homepage": "http://ASE-Inc.github.com/mysite",
-  "bugs": "https://github.com/ASE-Inc/mySite/issues",
+  "homepage": "http://abhishekmunie.com/projects/mysite",
+  "bugs": "https://github.com/abhishekmunie/mySite/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ASE-Inc/mySite.git"
+    "url": "https://github.com/abhishekmunie/mySite.git"
   },
   "devDependencies": {
     "cucumber": "latest",

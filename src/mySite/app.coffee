@@ -11,7 +11,6 @@ cookieParser = require 'cookie-parser'
 bodyParser   = require 'body-parser'
 
 cachelicious = require 'cachelicious'
-livereload   = require 'connect-livereload'
 
 cacheliciousConnect = cachelicious.connect
 
@@ -100,7 +99,7 @@ module.exports.App = class App
           res.send err
 
     # if @app.get('env') is 'development'
-    #   @app.use(livereload)
+    #   @app.use require('connect-livereload')
     #     port: 35729
 
   start: (callback) ->

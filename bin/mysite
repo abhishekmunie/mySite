@@ -50,10 +50,20 @@ commander.command('serve').description('Serve your site with continous in-memory
 }).action(function(options) {
   var mySite;
   console.log("Building " + commander.source + "...");
-  return mySite = new Site({source: commander.source}, function() {
-    mySite.serve();
-    console.log("Serving at " + commander.port + "...");
-    return console.log("Watching for changes...");
+  console.time('Site Built in');
+  return mySite = new Site({
+    source: commander.source
+  }, function(err) {
+    if (err != null) {
+      return console.error(err);
+    }
+    console.timeEnd('Site Built in');
+    console.log("Starting Server...");
+    console.time('Server Started in');
+    return mySite.serve(function(address) {
+      console.timeEnd('Server Started in');
+      return console.log("Started at http://" + address.address + ":" + address.port);
+    });
   });
 });
 

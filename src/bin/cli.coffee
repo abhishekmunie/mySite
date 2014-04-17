@@ -53,10 +53,15 @@ commander
 
   .action (options) ->
     # config = deep_merge_ex_ {}, commander, options
-    console.log "Building #{config.source}..."
-    mySite = new Site {source: commander.source} , ->
-      mySite.serve()
-      console.log "Serving at #{config.port}..."
-      console.log "Watching for changes..."
+    console.log "Building #{commander.source}..."
+    console.time 'Site Built in'
+    mySite = new Site {source: commander.source}, (err) ->
+      return console.error err if err?
+      console.timeEnd 'Site Built in'
+      console.log "Starting Server..."
+      console.time 'Server Started in'
+      mySite.serve (address) ->
+        console.timeEnd 'Server Started in'
+        console.log "Started at http://#{address.address}:#{address.port}"
 
 commander.parse process.argv

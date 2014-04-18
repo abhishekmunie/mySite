@@ -30,7 +30,7 @@ module.exports.App = class App
     @app.use url, proxyHandler
 
   configure: ->
-    @app.use favicon()
+    @app.use favicon path.join @config.static_file.source, 'favicon.ico'
     @app.use logger immediate: true, format: 'dev' if @app.get('env') is 'development'
     @app.use cookieParser @config.cookie_secret
     @app.use bodyParser.json()
@@ -63,17 +63,16 @@ module.exports.App = class App
       @debug "Checking static cache for #{req.url}"
       return next() if req.url[1] is '_' or /^\/(.*\/_.*|node_modules\/.*|package.json|Procfile|vendor\/.*)$/.test req.url
       # req.url = req.url.replace /^(.+)\.(\d+)\.(js|css|png|jpg|gif)$/, '$1.$3' if @config.cache_busting
-
-      # try
       return @staticCache.apply @, arguments
-      # catch e
-      #   console.error e
 
     ## catch 404 and forwarding to error handler
     @app.use (req, res, next) ->
-      err = new Error('Not Found')
-      err.status = 404
-      next(err)
+      res.status 404
+      req.url = '/404.html'
+      return @staticCache.apply @, arguments
+      # err = new Error('Not Found')
+      # err.status = 404
+      # next(err)
 
     ## error handlers
     @app.use (err, req, res, next) ->
@@ -85,9 +84,9 @@ module.exports.App = class App
       @app.use (err, req, res, next) ->
         res.status err.status || 500
         if req.xhr
-          res.send { error: 'Something blew up!' }
+          res.send { error: if err.status is 404 then '404 Not Found' else 'Something blew up!' }
         else
-          res.send 'Something blew up!'
+          res.send if err.status is 404 then '404 Not Found' else 'Something blew up!'
     else if @app.get('env') is 'development'
       # development error handler
       # will print stacktrace
